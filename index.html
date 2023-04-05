@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<htmlL lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <form>
+        <label for="Fname">First Name</label>
+        <input type="text" name="Firstname" placeholder="First name">
+        <br>
+        <label for="Lname">Last Name</label>
+        <input type="text" name="Lastname" placeholder="Last name">
+        <br>
+        <label for="email">email</label>
+        <input type="email" name="email" placeholder="email">
+        <br>
+        <label for="number">Phone number</label>
+        <input type="number" name="phoneNumber" placeholder="Phone number">
+        <br>
+        <label for="dob">Date of Birth</label>
+        <input type="text" name="dob" placeholder="Date of birth">
+        <br>
+        <label for="gender">Gender</label>
+        <input type="text" name="gender" placeholder="Gender">
+        <br>
+        <label for="address">Address</label>
+        <input type="text" name="address" placeholder="Address">
+        <br>
+        <label for="city">City</label>
+        <input type="text" name="city" placeholder="City">
+        <br>
+        <label for="state">State</label>
+        <input type="text" name="state" placeholder="State">
+        <br>
+        <label for="zip">Zip Code</label>
+        <input type="text" name="zip" placeholder="zip">
+        <br>
+        <label for="country">Country</label>
+        <input type="text" name="country" placeholder="country">
+        <br>
+        <button type="submit">Submit</button>
+        <button><a href="/data.html">Show data</a></button>
+    </form>
+    <script>
+        const post=async(data)=>{
+            const res=await fetch('http://localhost:3000',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(data)
+            });
+            const postResp=await res.json();
+            console.log(postResp);
+        }
+        const form=document.querySelector('form')
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const formData=new FormData(form);
+            const data=Object.fromEntries(formData);
+            post(data);          
+        })
+        
+    </script>
+</body>
+</htmlL
